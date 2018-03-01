@@ -16,7 +16,7 @@ Dependencies:
 Unpacking:
   tar zxvf virtuoso-opensource-*.*.*.tar.gz
   
-Configuring
+Configuring:
   cd virtuoso-opensource-*.*.*/
   ./configure --prefix=/usr/local/ --with-readline --program-transform-name="s/isql/isql-v/"
   
