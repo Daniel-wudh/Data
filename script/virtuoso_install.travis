@@ -1,2 +1,48 @@
-#this text notes the install and query step of virtuoso.
+###########################################################
+# this text notes the install and query step of virtuoso. #
+###########################################################
 
+
+Dependencies:
+  sudo apt-get update
+  sudo apt install  virtuoso-opensource
+  sudo apt-get install virtuoso-vad-{isparql,ods,cartridges,tutorial}
+  sudo apt install dpkg-dev build-essential
+  sudo apt-get source virtuoso-opensource
+  sudo apt build-dep virtuoso-opensource
+  dpkg-buildpackage -rfakeroot
+  sudo apt-get install autoconf automake libtool flex bison gperf gawk m4 make odbcinst libxml2-dev libssl-dev libread
+  
+Unpacking:
+  tar zxvf virtuoso-opensource-*.*.*.tar.gz
+  
+Configuring
+  cd virtuoso-opensource-*.*.*/
+  ./configure --prefix=/usr/local/ --with-readline --program-transform-name="s/isql/isql-v/"
+  
+Building and Installing:
+  nice make
+  sudo make install
+  
+Getting Started:
+  # virtuoso.ini is in the folder: /usr/local/var/lib/virtuoso/db/
+  # you need put data in this folder to import.
+  
+  cd /usr/local/var/lib/virtuoso/db/
+  sudo chown -R ubuntu .
+  virtuoso-t -fd &
+  isql-vt       # get into sql mode in ubuntu.
+  
+Running:
+  # create a table named test for example:
+  SQL>create table test(
+      id INTEGER NOT NULL,
+      start_id VARCHAR(10),
+      end_id VARCHAR(10),
+      label VARCHAR(10),
+      CONSTRAINT demo_table_pk PRIMARY KEY (id)
+      );
+  # import graph data:
+  SQL>csv_load_file('edge.csv',0,null,concat('test'));
+  # query:
+  SQL>select * from test where start_id in (select end_id from test where start_id = '10');
