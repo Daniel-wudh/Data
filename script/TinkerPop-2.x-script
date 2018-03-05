@@ -1,0 +1,23 @@
+#import graph
+
+graph = TitanFactory.open("conf/titan-cassandra-es.properties")
+bg = new BatchGraph(graph, VertexIDType.STRING, 200000010);
+
+new File("/home/ubuntu/mobilegraph_v.csv").each({ line ->
+  (nodename, mobile) = line.split(",")
+  node = bg.addVertex("node::" + nodename)
+  ElementHelper.setProperties(node, ["nodename":nodename,"mobile":mobile])
+})
+
+new File("/home/ubuntu/mobilegraph_e.csv").each({ line ->
+  (start, end, realtion) = line.split(",")
+  v1 = bg.getVertex("node::" + start)
+  v2 = bg.getVertex("node::" + end)
+  bg.addEdge(null, v1, v2, realtion)
+})
+
+bg.commit()
+
+#query
+
+graph.V().has("nodename","10").out().out()
