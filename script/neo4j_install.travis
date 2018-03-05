@@ -1,0 +1,17 @@
+
+########################################################
+# this text notes the install and query step of neo4j. #
+########################################################
+
+Dependencies:
+  install JDK first.
+
+Unpacking:
+  tar zxvf neo4j-community-3.3.1-unix.tar.gz.
+  
+Running:
+  #import csv file into database named graph.db
+  ./bin/neo4j-import --into graph.db --nodes nodes.csv --relationships relationships.csv
+  #query
+  ./bin/neo4j-shell -path graph.db
+  match (a)-->(b)-->(c) where a.node = '10' return c;
