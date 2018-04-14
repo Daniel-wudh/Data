@@ -2,7 +2,6 @@
 (v)(e1:type=null)(v1:type=null)(e2:type=null)(v2:type=applyinfo:cert_no=cert_no_src),
 (v)(e1:type=null)(v1:type=null)(e2:type=null)(v2:type=applyinfo:cert_no=cert_no_src&&label=1),
 (v)(e1:type=null)(v1:type=null)(e2:type=null)(v2:type=applyinfo:state1=q_refuse&&cert_no=cert_no_src),
-(v)(e1:type=null)(v1:type=null)(e2:type=null)(v2:type=applyinfo:cert_no=cert_no_src),
 (v)(e1:type=null)(v1:type=null)(e2:type=null)(v2:type=applyinfo:state2=pass&&cert_no=cert_no_src),
 (v)(e1:type=null)(v1:type=null)(e2:type=null)(v2:type=applyinfo:state2=pass&&current_due_day<=0&&cert_no=cert_no_src),
 (v)(e1:type=null)(v1:type=null)(e2:type=null)(v2:type=applyinfo:state2=pass&&current_due_day>3&&cert_no=cert_no_src),
